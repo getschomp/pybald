@@ -4,7 +4,7 @@
 ErrorController.py
 
 Created by mikepk on 2012-09-06.
-Copyright (c) 2012 Michael Kowalchik. All rights reserved.
+Copyright (c) 2015 Michael Kowalchik. All rights reserved.
 """
 
 import os

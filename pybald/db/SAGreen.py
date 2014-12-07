@@ -5,8 +5,7 @@ SAGreen.py
 
 Support code to allow SQLalchemy to operate correctly with Eventlet and Green Threads.
 
-Created by mikepk on 2010-10-15.
-Copyright (c) 2011 Michael Kowalchik. All rights reserved.
+Copyright (c) 2015 Michael Kowalchik. All rights reserved.
 """
 
 import sqlalchemy.engine.url

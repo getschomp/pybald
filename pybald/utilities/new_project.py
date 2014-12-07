@@ -4,7 +4,7 @@
 new_project.py
 
 Created by mikepk on 2009-11-17.
-Copyright (c) 2009 Michael Kowalchik. All rights reserved.
+Copyright (c) 2015 Michael Kowalchik. All rights reserved.
 """
 
 import sys

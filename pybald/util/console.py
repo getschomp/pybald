@@ -4,7 +4,7 @@
 # Console.py
 #
 # Created by mikepk on 2011-10-16.
-# Copyright (c) 2011 Michael Kowalchik. All rights reserved.
+# Copyright (c) 2015 Michael Kowalchik. All rights reserved.
 # """
 import code
 
