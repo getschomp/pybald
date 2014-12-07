@@ -55,9 +55,10 @@ def add_js(filename):
 
 def add_css(filename, media="screen"):
     return HTMLLiteral(('''<link type="text/css" href="{0}"'''
-            ''' media="{1}" rel="stylesheet" />''').format(
-                                                AssetUrl(compute_asset_tag(filename)),
-                                                str(media)))
+            ''' media="{1}" '''
+            '''rel="stylesheet" />''').format(
+                                        AssetUrl(compute_asset_tag(filename)),
+                                        str(media)))
 
 
 def add_extern_css(filename, media="screen"):

@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-#import sys
 import unittest
-#from webob import Request, Response
 
 import logging
 import logging.handlers
