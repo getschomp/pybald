@@ -44,11 +44,10 @@ env = Environment(bundle_output_path,
                   '',
                   debug=(not project.BUNDLE_ASSETS),
                   auto_build=bool(project.BUNDLE_AUTO_BUILD),
-                  load_path=bundle_input_paths)
+                  load_path=bundle_input_paths,
+                  # Take any bundle filter options and apply them to the config
+                  **(project.BUNDLE_FILTER_OPTIONS or {}))
 
-# Take any bundle filter options and apply them to the config
-for key, value in (project.BUNDLE_FILTER_OPTIONS or {}).items():
-    env.config[key] = value
 
 def _parse_bundle(elem, parent_bundle=None):
     '''Recursively generate webassets bundles by walking the xml tree'''
