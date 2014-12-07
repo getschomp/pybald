@@ -2,6 +2,8 @@ import logging
 console = logging.getLogger(__name__)
 from pybald.core.logs import default_debug_log
 import collections
+from pybald.core.cache import Cache
+from pybald.core.templates import Template
 
 
 class Config(collections.MutableMapping):
@@ -41,6 +43,8 @@ class Pybald(object):
         self.setup_logging()
         self.config = self.setup_default_configuration(config)
         console.debug("Starting: {0}".format(app_name))
+        self.setup_cache()
+        self.setup_templates()
 
     def setup_default_configuration(self, config):
         return Config(**config)
@@ -48,8 +52,11 @@ class Pybald(object):
     def setup_logging(self):
         default_debug_log()
 
+    def setup_cache(self):
+        Cache(self)
+
     def setup_templates(self):
-        pass
+        Template(self)
 
     def setup_datastore(self):
         pass
