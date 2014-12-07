@@ -74,6 +74,13 @@ def disable_sql_log():
     engine_log.setLevel(logging.ERROR)
 
 
+def enable_httplib2_debug():
+    '''Turn on httplib2's debug mode, it doesn't use the standard
+    python logging facilities so needs it's own statement'''
+    import httplib2
+    httplib2.debuglevel = 3
+
+
 class LogPoint(object):
     '''
     WSGI middleware to output a log message before and after this point in
