@@ -11,9 +11,8 @@ import logging
 console = logging.getLogger(__name__)
 
 
-class Template(object):
+class TemplateConfig(object):
     def __init__(self, app, config=None):
-            pass
             # base template helpers all pybald projects have
             template_helpers = ['from pybald.core.helpers import img, link, humanize, js_escape, as_p',
                                 'from pybald.core import page',

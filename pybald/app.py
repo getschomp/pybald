@@ -3,7 +3,7 @@ console = logging.getLogger(__name__)
 from pybald.core.logs import default_debug_log
 import collections
 from pybald.core.cache import Cache
-from pybald.core.templates import Template
+from pybald.core.templates import TemplateConfig
 
 
 class Config(collections.MutableMapping):
@@ -56,9 +56,8 @@ class Pybald(object):
         Cache(self)
 
     def setup_templates(self):
-        Template(self)
+        TemplateConfig(self)
 
     def setup_datastore(self):
+        # Database(self)
         pass
-
-

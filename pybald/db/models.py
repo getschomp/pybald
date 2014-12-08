@@ -142,7 +142,7 @@ else:
         state.modified_event(dict_, impl, True, NO_VALUE)
 
 from types import ASCII, JSONEncodedDict, ZipPickler, MutationDict
-from pybald.db import engine, dump_engine
+# from pybald.db import engine, dump_engine
 
 import sqlalchemy.ext.declarative
 from sqlalchemy.ext.declarative import declarative_base
@@ -191,20 +191,23 @@ class Database(object):
         engine_args = app.config.database_engine_args
 
         def dump(sql, *multiparams, **params):
-            print str(sql.compile(dialect=dump_engine.dialect) )
+            print str(sql.compile(dialect=dump_engine.dialect))
 
         dump_engine = sqlalchemy.create_engine('mysql://', strategy='mock', executor=dump)
 
-        try:
-            engine = sqlalchemy.create_engine(app.config.database_engine_uri, **engine_args)
-        except AttributeError:
-            # change this to an log warning
-            sys.stderr.write("**WARNING**\nSQLALchemy/pybald is using a mock"
-                             " db connection.\n")
-            engine = dump_engine
+        self.engines = {}
+        for dbname, uri in app.config.databases.items():
+            try:
+                engine = sqlalchemy.create_engine(uri, **engine_args)
+                self.engines[dbname] = engine
+            except AttributeError:
+                # change this to an log warning
+                sys.stderr.write("**WARNING**\nSQLALchemy/pybald is using a mock"
+                                 " db connection.\n")
+                engine = dump_engine
 
         session = scoped_session(sessionmaker(bind=engine, **session_args))
-        Base = declarative_base(bind=engine)
+        Base = declarative_base()
 
         class ModelMeta(sqlalchemy.ext.declarative.DeclarativeMeta):
             '''
