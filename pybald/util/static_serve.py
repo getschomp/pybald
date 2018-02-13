@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # encoding: utf-8
+import io
 import os
 import mimetypes
 from datetime import datetime, timedelta
+
 
 class StaticServer(object):
     '''
@@ -30,12 +32,11 @@ class StaticServer(object):
         as a generator / iterable.
         '''
         BLOCK_SIZE = 64 * 1024
-        f = open(file_path)  # as f:
-        block = f.read(BLOCK_SIZE)
-        while block:
-            yield block
+        with io.open(file_path, mode='rb') as f:
             block = f.read(BLOCK_SIZE)
-        f.close()
+            while block:
+                yield block
+                block = f.read(BLOCK_SIZE)
 
     def __call__(self, environ, start_response):
         '''
@@ -63,4 +64,3 @@ class StaticServer(object):
 
         start_response("200 OK", headers)
         return self.send_file(file_path, size)
-
