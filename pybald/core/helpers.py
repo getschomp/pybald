@@ -259,8 +259,9 @@ _base_js_escapes = (
 )
 
 # From django.utils.html: Escape every ASCII character with a value less than 32.
-_js_escapes = (_base_js_escapes +
-               tuple([(b'%c' % z, b'\\u%04X' % z) for z in range(32)]))
+_low_char_escapes = tuple([(b'%c' % z, b'\\u%04X' % z) for z in range(32)])
+
+_js_escapes = _base_js_escapes + _low_char_escapes
 
 
 def js_escape(value):
