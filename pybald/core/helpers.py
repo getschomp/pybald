@@ -258,8 +258,45 @@ _base_js_escapes = (
     (b'\u2029', b'\\u2029')
 )
 
+# This seems broken in Python 3.4?
 # From django.utils.html: Escape every ASCII character with a value less than 32.
-_low_char_escapes = tuple([(b'%c' % z, b'\\u%04X' % z) for z in range(32)])
+#_low_char_escapes = tuple([(b'%c' % z, b'\\u%04X' % z) for z in range(32)])
+
+# Defining manually for now
+_low_char_escapes = (
+    ('\x00', '\\u0000'),
+    ('\x01', '\\u0001'),
+    ('\x02', '\\u0002'),
+    ('\x03', '\\u0003'),
+    ('\x04', '\\u0004'),
+    ('\x05', '\\u0005'),
+    ('\x06', '\\u0006'),
+    ('\x07', '\\u0007'),
+    ('\x08', '\\u0008'),
+    ('\t',   '\\u0009'),
+    ('\n',   '\\u000A'),
+    ('\x0b', '\\u000B'),
+    ('\x0c', '\\u000C'),
+    ('\r',   '\\u000D'),
+    ('\x0e', '\\u000E'),
+    ('\x0f', '\\u000F'),
+    ('\x10', '\\u0010'),
+    ('\x11', '\\u0011'),
+    ('\x12', '\\u0012'),
+    ('\x13', '\\u0013'),
+    ('\x14', '\\u0014'),
+    ('\x15', '\\u0015'),
+    ('\x16', '\\u0016'),
+    ('\x17', '\\u0017'),
+    ('\x18', '\\u0018'),
+    ('\x19', '\\u0019'),
+    ('\x1a', '\\u001A'),
+    ('\x1b', '\\u001B'),
+    ('\x1c', '\\u001C'),
+    ('\x1d', '\\u001D'),
+    ('\x1e', '\\u001E'),
+    ('\x1f', '\\u001F')
+)
 
 _js_escapes = _base_js_escapes + _low_char_escapes
 
